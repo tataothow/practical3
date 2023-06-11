@@ -2,6 +2,7 @@
 editor_options:
   markdown:
     wrap: 72
+output: pdf_document
 ---
 
 ```{r setup, include=FALSE}
@@ -133,10 +134,9 @@ of pneumonia exist.
 **0\_** What is pneumonia and what is the point/benefit of being able to
 identify it from X-rays automatically?
 
-pneumonia is an infection that inflames the lungs air sacs. The air sac can fill up with fluid causing symptom like coughing, fever and chills.(1) The benefits of being able to identofy it from X-ray can help detect it the inflammation at different location on the chest. 
+pneumonia is an infection that inflames the lungs air sacs. The air sac can fill up with fluid causing symptom like coughing, fever and chills.[1] The benefits of being able to identify it from an X-ray is to help detect the inflammation at different location on the chest to help patient early in the stage. 
 
-
-(1)https://www.lung.org/lung-health-diseases/lung-disease-lookup/pneumonia/symptoms-and-diagnosis#:~:text=Pneumonia%20is%20an%20infection%20that,fever%2C%20chills%20and%20trouble%20breathing. 
+[1] https://www.lung.org/lung-health-diseases/lung-disease-lookup/pneumonia/symptoms-and-diagnosis#:~:text=Pneumonia%20is%20an%20infection%20that,fever%2C%20chills%20and%20trouble%20breathing. 
 
 # Exploring dataset
 
@@ -157,8 +157,8 @@ those in `{train,test}/PNEUMONIA`).
 **1\_** Do these filenames tell you anything about pneumonia? Why might
 this make predicting pneumonia more challenging?
 
-The filenames tells us what is file in in what for example we can shee that "person85_bacteria_422.jpeg" is in folder pneumonia,
-it gices us information for example that person85 had a bacteria pneumonia. Why might this make predicting pneumonia more challenging is the fact that their isn't any information on the patient that can be a factor in the diagnosis the challeng is the limiation of information that can make it harder to predict specially if its just based on the file name.
+The file-name does give us information for example "person85_bacteria_422.jpeg" is in the pneumonia folder,
+This gives us information about person85 and how they have a bacteria pneumonia. Why might this make predicting pneumonia more challenging is the fact that their isn't any information on the patient that can be a factor in the diagnosis we only know that they have a virus or a bacteria pneumonia, the challenge is the limitation of information that can make it harder for predicting specially if we are going of the file name.
 
 
 
@@ -292,7 +292,7 @@ grid.arrange(grobs = plots, nrow = 2, ncol = 2)
 **2\_** From looking at only 3 images do you see any attribute of the
 images that we may have to normalise before training a model?
 
-size of the images are different so reconsidering making the size the same can help to normalize the training model that be by  making the size a fix size for every image. Another thing is the pixel intensity is the borrom right image is lighter intensity level compared to the rest that has a some dark intensity, so to normalize this we need to be consistent with the pixel intensity before training the model. 
+size of the images are different so reconsidering making the size the same can help to normalize the training model that be by  making the size a fix size for every image. Another thing is the pixel intensity at the bottom right image it's a brighter intensity level compared to the rest that has a darker intensity, so to normalize this we need to be consistent with the pixel intensity before training the model. 
 
 
 Yes the image that isn't fully aline with the rest of the imaging.
@@ -477,7 +477,6 @@ be useful?
 Referring to class discussion on Augmentations, if the dataset was not balance using the technique like data augmentation to rotate, and flip  the imaging to get more trained samples.
 
 
-if the dataset wasn't balance the dataset tecgnique that could be useful 
 # Trainig
 
 In the next step, we need to reshape the dataset to ensure it is in the
@@ -761,7 +760,7 @@ print(acc_plot)
 managing to classify X-rays into pneumonia vs normal? What do you think
 contributes to this? why?
 
-Based on the training and test accuracy specially the test accuracy its at a 0.5 which seems like the model wouldn't be able to accuarcy classify the x-ray into pneumonia or normal, what contributes to such low accuracy values could be do to an imbalance of data that can be that there is more of one case than the other or the fact that their isn't much used on data augmentation.
+Based on the training and test accuracy specially the test accuracy its at a 0.5 which seems like the model wouldn't be able to accurately classify the x-ray into pneumonia or normal. What contributes to such low accuracy values could be do to an imbalance of data that can be that there is more of one case than the other or the fact that their isn't much used on data augmentation.
 
 The model is managing to classify the x-ray into pneumonia vs normal, what contribute to this is how it can detect the fluids that inside the lungs compared to those without fluid within the lungs 
 
@@ -776,10 +775,9 @@ process needs adjustments.
 **5\_** what is your suggestions to solve this problem? How could we
 improve this model?
 
-My suggestion to improve the model is one, if there is a suggestion that the model is to complex, than 
-we could simplify the model that could be by reducing the numbers of layers, and parametrs.
-
-Another option increase the data for training the model this means more x-rays imaging.
+My suggestion to improve the model is one, since the mention of the model being complex, than 
+we could simplify the model, by reducing the numbers of layers, and parameters.
+Another option can be to increase the data for training the model this means more x-ray imaging.
 
 
 
@@ -870,8 +868,7 @@ batch[[1]]$size()
 **6\_** What are the potential drawbacks or disadvantages of data
 augmentation?
 
-the potential drawbacks of data augmentation is one lossing information due to the down sizing or rotation of the imaging, this 
-would lead to the loss of quality of that imaging and any valuble information that could have been studied from the image.
+the potential drawbacks of data augmentation is one losing information due to the down sizing or rotation of the imaging, this would lead to the loss of quality of that image and any valuable information that could have been studied from the image.
 
 # Mobile net
 
@@ -889,7 +886,7 @@ have already been trained on the ImageNet dataset.
 Challenge 2012"? How many images and classes does it involve? Why might
 this help us?
 
-ImageNet was created to classify images, it contains around 1.2 million images, and 1000 classes. This helps to improve computer vision, for transfer learning data.
+ImageNet was created to classify images, it contains around 1.2 million images, and 1000 classes. This helps to improve transfer learning data.
 
 reference for imageNet - https://blog.roboflow.com/introduction-to-imagenet/#:~:text=ImageNet%20contains%201000%20object%20classes 
 
@@ -901,17 +898,25 @@ transfer learning scenarios. Do some research about this model.
 assignment can help to improve the results? Hint: See MobileNet
 publication
 
-The use of MobileNet architecture can be  helpful to improve the transfer learning, since it has pre-trained
-datasets the model can use this for classifying problems, this helps to improve  performance 
+The use of MobileNet architecture can be  helpful to improve the transfer learning, since it has pre-trained datasets the model can use this for classifying imaging problems, this can help with performace and accuracy  
 
 
 **9\_** How many parameters does this network have? How does this
 compare to better performing networks available in torch?
 
+The number of parameters for MobileNet depends on the number of imaging size that's been inputted
+and the different variety are mobilenet_v1 - mobilenet_v3 however in this network we only have one which is mobilenet_v2. In comparison to other networks available in torch mobileNet has 
+less parameters which means it can achieve a good accuracy among image classification.
+
+reference for Q9 - https://arxiv.org/pdf/2005.05085.pdf 
+
 In the following you can see an example of how we can load pre-trained
 models in our codes.
 
 ```{r}
+library(torch)
+library(torchvision)
+
 # Load the pre-trained MobileNet model
 mobilenet <- model_mobilenet_v2(pretrained = TRUE)
 
@@ -924,6 +929,51 @@ mobilenet$classifier <- nn_linear(224*224*1, 16)   # Adjust the output size base
 
 **10\_** Using the provided materials in this practical, train a
 different network architecture. Does this perform better?
+
+FOR CODE USED I MODIFY "Traing model code provided in this practical"
+However 
+
+```{r warning=FALSE}
+
+# Set the number of epochs
+num_epochs <- 3
+
+train_loss <- numeric(num_epochs)
+train_acc <- numeric(num_epochs)
+test_loss <- numeric(num_epochs)
+test_acc <- numeric(num_epochs)
+
+# Loop through the epochs
+for (epoch in 1:num_epochs) {
+  # Perform training and validation for each epoch
+  #instead of net i use mobilenet for the pre-train data 
+  fitted <- mobilenet %>%
+    setup(
+      loss = nn_cross_entropy_loss(),
+      optimizer = optim_adam,
+      metrics = list(
+        luz_metric_accuracy()
+      )
+    ) %>%
+    fit(train_dataloader, epochs = 1, valid_data = test_dataloader)
+  
+  # Print the metrics for the current epoch
+  cat("Epoch ", epoch, "/", num_epochs, "\n")
+  cat("Train metrics: Loss: ", fitted$records$metrics$train[[1]]$loss, " - Acc: ", fitted$records$metrics$train[[1]]$acc, "\n")
+  cat("Valid metrics: Loss: ", fitted$records$metrics$valid[[1]]$loss, " - Acc: ", fitted$records$metrics$valid[[1]]$acc, "\n")
+  cat("\n")
+  
+  # Store the loss and accuracy values
+  train_loss[epoch] <- fitted$records$metrics$train[[1]]$loss
+  train_acc[epoch] <- fitted$records$metrics$train[[1]]$acc
+  test_loss[epoch] <- fitted$records$metrics$train[[1]]$loss
+  test_acc[epoch] <- fitted$records$metrics$valid[[1]]$acc
+}
+
+}
+```
+
+
 
 # Useful links
 
