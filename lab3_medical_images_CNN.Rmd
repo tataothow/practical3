@@ -2,7 +2,10 @@
 editor_options:
   markdown:
     wrap: 72
-output: pdf_document
+output:
+  pdf_document: default
+  html_document:
+    df_print: paged
 ---
 
 ```{r setup, include=FALSE}
@@ -914,8 +917,6 @@ In the following you can see an example of how we can load pre-trained
 models in our codes.
 
 ```{r}
-library(torch)
-library(torchvision)
 
 # Load the pre-trained MobileNet model
 mobilenet <- model_mobilenet_v2(pretrained = TRUE)
@@ -931,46 +932,50 @@ mobilenet$classifier <- nn_linear(224*224*1, 16)   # Adjust the output size base
 different network architecture. Does this perform better?
 
 FOR CODE USED I MODIFY "Traing model code provided in this practical"
-However 
+However I wasn't able to get the result I wanted by modify this code and I couldn't 
+upload to html or pdf due to the code failing so I comment out the code below 
 
-```{r warning=FALSE}
+To answer the question if I train a different model or the model below with modification 
+I believe that it would have performed better
+
+
+```{r}
 
 # Set the number of epochs
 num_epochs <- 3
 
-train_loss <- numeric(num_epochs)
-train_acc <- numeric(num_epochs)
-test_loss <- numeric(num_epochs)
-test_acc <- numeric(num_epochs)
+#train_loss <- numeric(num_epochs)
+#train_acc <- numeric(num_epochs)
+#test_loss <- numeric(num_epochs)
+#test_acc <- numeric(num_epochs)
 
 # Loop through the epochs
-for (epoch in 1:num_epochs) {
+#for (epoch in 1:num_epochs) {
   # Perform training and validation for each epoch
   #instead of net i use mobilenet for the pre-train data 
-  fitted <- mobilenet %>%
-    setup(
-      loss = nn_cross_entropy_loss(),
-      optimizer = optim_adam,
-      metrics = list(
-        luz_metric_accuracy()
-      )
-    ) %>%
-    fit(train_dataloader, epochs = 1, valid_data = test_dataloader)
+  #fitted <- mobilenet %>%
+   # setup(
+    #  loss = nn_cross_entropy_loss(),
+   #   optimizer = optim_adam,
+  #    metrics = list(
+     #   luz_metric_accuracy()
+    #  )
+    #) %>%
+   # fit(train_dataloader, epochs = 1, valid_data = test_dataloader)
   
   # Print the metrics for the current epoch
-  cat("Epoch ", epoch, "/", num_epochs, "\n")
-  cat("Train metrics: Loss: ", fitted$records$metrics$train[[1]]$loss, " - Acc: ", fitted$records$metrics$train[[1]]$acc, "\n")
-  cat("Valid metrics: Loss: ", fitted$records$metrics$valid[[1]]$loss, " - Acc: ", fitted$records$metrics$valid[[1]]$acc, "\n")
-  cat("\n")
+  #cat("Epoch ", epoch, "/", num_epochs, "\n")
+ # cat("Train metrics: Loss: ", fitted$records$metrics$train[[1]]$loss, " - Acc: ", fitted$records$metrics$train[[1]]$acc, "\n")
+ # cat("Valid metrics: Loss: ", fitted$records$metrics$valid[[1]]$loss, " - Acc: ", fitted$records$metrics$valid[[1]]$acc, "\n")
+ # cat("\n")
   
   # Store the loss and accuracy values
-  train_loss[epoch] <- fitted$records$metrics$train[[1]]$loss
-  train_acc[epoch] <- fitted$records$metrics$train[[1]]$acc
-  test_loss[epoch] <- fitted$records$metrics$train[[1]]$loss
-  test_acc[epoch] <- fitted$records$metrics$valid[[1]]$acc
-}
+  #train_loss[epoch] <- fitted$records$metrics$train[[1]]$loss
+  #train_acc[epoch] <- fitted$records$metrics$train[[1]]$acc
+  #test_loss[epoch] <- fitted$records$metrics$train[[1]]$loss
+  #test_acc[epoch] <- fitted$records$metrics$valid[[1]]$acc
 
-}
+
 ```
 
 
